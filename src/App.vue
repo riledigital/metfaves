@@ -8,6 +8,13 @@
   <router-view />
 </template>
 
+<script>
+export default {
+  name: "MetFaves",
+};
+</script>
+
+
 <style>
 #app {
   --font-sans: "Avenir Next", -apple-system, BlinkMacSystemFont, "Avenir Next",
@@ -35,11 +42,6 @@
 * {
   margin: 0;
   padding: 0;
-}
-
-svg {
-  /* height: 100%; */
-  /* width: 100%; */
 }
 
 body {
