@@ -1,12 +1,13 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
-const initialSet = new Set();
+// const initialSet = new Set();
+// const initialSet = [];
 
 export default createStore({
   plugins: [createPersistedState()],
   state: {
-    myFavorites: initialSet,
+    myFavorites: [],
     objectDetails: [],
     rawSearchResults: null,
     searchString: "",
@@ -31,10 +32,10 @@ export default createStore({
     },
     addToList(state, payload) {
       console.log("listened for " + payload.id);
-      if (state.myFavorites.has(payload.id)) {
+      if (state.myFavorites.includes(payload.id)) {
         alert("Already have the item!");
       }
-      state.myFavorites.add(payload.id);
+      state.myFavorites.push(payload.id);
     },
   },
   actions: {

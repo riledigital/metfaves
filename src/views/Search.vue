@@ -1,6 +1,8 @@
 <template>
   <div class="content">
-    <h1>Search</h1>
+
+    <header class="header"><h1 class="header__h1">Search</h1></header>
+
     <form @submit.prevent="handleSubmit">
       <input
         class="searchbox"
@@ -17,7 +19,7 @@
     <div class="search-results">
       <div v-if="emptySearch">None found for {{ searchedFor }}, try again?</div>
       <div v-else-if="!submitted">Enter your search above.</div>
-      <div v-else-if="searchLoading" class="spinning">Loading results...</div>
+      <div v-else-if="searchLoading"><span class="spinning">Loading results...</span></div>
       <div v-else>
         <h3 class="searched-for" v-if="searchedFor">{{ searchedForString }}</h3>
         <div class="card-grid">
@@ -121,7 +123,8 @@ export default {
 }
 
 .card-grid > * {
-  width: 25rem;
+  max-width: 35vw;
+  height: auto;
   flex-shrink: 3;
 }
 

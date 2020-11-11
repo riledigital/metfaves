@@ -1,4 +1,6 @@
 <template>
+    <header class="header"><h1 class="header__h1">Favorites</h1></header>
+
     <div class="favorites-container">
 {{ myFavorites }}
         </div>

@@ -77,11 +77,11 @@ export default {
   --padding: 1rem;
   background: gray;
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: .5rem;
   position: relative;
   display: flex;
   /* margin: auto; */
-  margin: 1rem;
+  margin: .25rem;
   /* min-width: 150px; */
   max-height: auto;
 }

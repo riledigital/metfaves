@@ -21,14 +21,17 @@ export default {
 
 
 <style>
+
 :root {
-  --color-bg: #300000;
-  --color-bg-2: #581515;
-  --color-text: white;
+  --color-bg: #382D2D;
+  --color-met-red: #E4002B;
+  --color-bg-2: var(--color-met-red);
   --color-text: white;
   --color-links: rgb(255, 111, 111);
-  --font-sans:  -apple-system, "Avenir Next", BlinkMacSystemFont, Helvetica,
+  --color-links-active: rgb(255, 111, 111);
+  --font-sans:  "Source Sans Pro", -apple-system, "Avenir Next", BlinkMacSystemFont, Helvetica,
     Arial, sans-serif;
+
 }
 
 #app {
@@ -43,13 +46,19 @@ export default {
   padding: 1rem;
 }
 
-#nav a {
-  font-weight: bold;
+a {
   color: var(--color-links);
 }
 
+#nav a {
+  font-weight: bold;
+  color: var(--color-text);
+}
+
 #nav a.router-link-exact-active {
-  color: #42b983;
+  /* color:  var(--color-links-active); */
+  opacity: .90;
+  text-decoration: none;;
 }
 
 * {
@@ -68,6 +77,14 @@ img {
   max-width: 100%;
 }
 
+
+button {
+  background: none;
+border: 1px solid var(--color-links);
+border-radius: 1rem;
+color: var(--color-links);
+}
+
 input {
   font-family: var(--font-sans);
 }
@@ -83,10 +100,27 @@ button {
 
 @keyframes spin {
   from {
-    transform: rotate(0);
+    transform: rotate(0deg);
   }
   to {
-    transform: rotate(360);
+    transform: rotate(360deg);
   }
 }
+
+/* Reusable */
+.header {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;;
+  text-align:center;
+  align-items:center;
+  margin-bottom: 1rem;
+
+}
+
+.header__h1 {
+  font-weight: normal;
+
+}
+
 </style>
