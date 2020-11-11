@@ -56,8 +56,17 @@ export default {
   ],
   methods: {
     addItem() {
+      let newItem = {
+        id: this.objectID,
+        objectUrl: this.objectURL,
+        imageUrl: this.primaryImage,
+        title: this.title,
+        culture: this.culture,
+        department: this.department,
+      };
+      this.$parent.db.add(newItem);
       console.log("lol clicked: " + this.title);
-      this.$emit("added", this.objectID);
+      this.$emit("added", newItem);
     },
   },
 };

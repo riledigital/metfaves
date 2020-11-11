@@ -9,8 +9,14 @@
 </template>
 
 <script>
+// import db from "./database.js";
+// this.prototype.db = db;
 export default {
   name: "MetFaves",
+  store,
+  mounted() {
+    console.info("mounted the #app");
+  },
 };
 </script>
 
