@@ -13,7 +13,6 @@
 // this.prototype.db = db;
 export default {
   name: "MetFaves",
-  store,
   mounted() {
     console.info("mounted the #app");
   },
@@ -23,8 +22,9 @@ export default {
 
 <style>
 #app {
-  --font-sans: "Avenir Next", -apple-system, BlinkMacSystemFont, "Avenir Next",
-    Helvetica, Arial, sans-serif;
+  --font-sans: "Avenir Next", -apple-system, BlinkMacSystemFont, Helvetica,
+    Arial, sans-serif;
+
   font-family: var(--font-sans);
   color: #2c3e50;
   -webkit-font-smoothing: antialiased;
