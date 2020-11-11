@@ -3,11 +3,13 @@
     <h1>Search</h1>
     <form @submit.prevent="handleSubmit">
       <input
+        class="searchbox"
         v-model="searchString"
         type="text"
         placeholder="Search for an item"
       />
     </form>
+    <div class="alerts"></div>
     <div class="my-list">
       {{ myFavorites }}
     </div>
@@ -51,6 +53,9 @@ export default {
   methods: {
     addToList(id) {
       console.log("listened for " + id);
+      if (this.myFavorites.has(id)) {
+        alert("Already have the item!");
+      }
       this.myFavorites.add(id);
     },
     async fetchObjectDetails() {
@@ -126,7 +131,7 @@ export default {
   margin: 2rem;
 }
 
-input {
+.searchbox {
   box-sizing: border-box;
   min-width: 100%;
   font-size: 2rem;
@@ -135,6 +140,12 @@ input {
   background-color: #eaeaea;
   border: none;
   border-radius: 8px;
+  transform: translate(0, 0);
+  transition: 0.1s ease-out;
+}
+
+.searchbox:focus {
+  transform: translate(1vh);
 }
 
 .card-grid {

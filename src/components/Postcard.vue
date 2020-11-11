@@ -1,37 +1,39 @@
 <template>
-  <div class="container">
-    <div class="image-container">
-      <img
-        class="img"
-        :src="
-          primaryImageSmall
-            ? primaryImageSmall
-            : 'https://via.placeholder.com/150'
-        "
-      />
-    </div>
-    <div class="overlay">
-      <div class="actions">
-        <button @click="addItem">Add ⊕</button>
+  <transition name="slide-fade">
+    <div class="container">
+      <div class="image-container">
+        <img
+          class="img"
+          :src="
+            primaryImageSmall
+              ? primaryImageSmall
+              : 'https://via.placeholder.com/150'
+          "
+        />
       </div>
-      <div class="card__info">
-        <h4 class="card__title">
-          <a :href="objectURL" class="card__link">{{ title }}</a>
-        </h4>
-        <p>{{ objectDate }}</p>
-        <!-- <p>{{ department }}</p> -->
-        <p>{{ culture }}</p>
+      <div class="overlay">
+        <div class="actions">
+          <button @click="addItem">Add ⊕</button>
+        </div>
+        <div class="card__info">
+          <h4 class="card__title">
+            <a :href="objectURL" class="card__link">{{ title }}</a>
+          </h4>
+          <p>{{ objectDate }}</p>
+          <!-- <p>{{ department }}</p> -->
+          <p>{{ culture }}</p>
 
-        <p>{{ classification }}</p>
-      </div>
-      <div class="card__footer">
-        <span class="footer__culture">
-          {{ culture }}
-        </span>
-        <span class="footer__dept">{{ department }}</span>
+          <p>{{ classification }}</p>
+        </div>
+        <div class="card__footer">
+          <span class="footer__culture">
+            {{ culture }}
+          </span>
+          <span class="footer__dept">{{ department }}</span>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -181,5 +183,21 @@ p {
 
 .card__title {
   font-size: 1rem;
+}
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>
