@@ -1,7 +1,10 @@
 import { createStore } from "vuex";
-let initialSet = new Set();
+import createPersistedState from "vuex-persistedstate";
+
+const initialSet = new Set();
 
 export default createStore({
+  plugins: [createPersistedState()],
   state: {
     myFavorites: initialSet,
     objectDetails: [],
