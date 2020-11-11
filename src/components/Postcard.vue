@@ -64,7 +64,6 @@ export default {
         culture: this.culture,
         department: this.department,
       };
-      this.$parent.db.add(newItem);
       console.log("lol clicked: " + this.title);
       this.$emit("added", newItem);
     },

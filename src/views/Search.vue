@@ -11,24 +11,23 @@
     </form>
     <div class="alerts"></div>
     <div class="my-list">
+      {{ getSearchCount }}
       {{ myFavorites }}
     </div>
     <div class="search-results">
-      <div v-if="emptySearch">None found, try again?</div>
+      <div v-if="emptySearch">None found for {{ searchedFor }}, try again?</div>
       <div v-else-if="!submitted">Enter your search above.</div>
       <div v-else-if="searchLoading" class="spinning">Loading results...</div>
       <div v-else>
         <h3 class="searched-for" v-if="searchedFor">{{ searchedForString }}</h3>
         <div class="card-grid">
           <Postcard
-            @added="addToList"
+            @added="add"
             v-for="(item, index) in objectDetails"
             v-bind="item"
             :key="index"
           ></Postcard>
         </div>
-        <h3>Raw results</h3>
-        {{ rawResults }}
       </div>
     </div>
   </div>
@@ -36,90 +35,53 @@
 
 <script>
 import Postcard from "../components/Postcard.vue";
-let initialSet = new Set();
+import { mapActions, mapMutations, mapState } from "vuex";
+
 export default {
   data() {
     return {
       emptySearch: false,
-      rawResults: null,
-      searchString: "",
-      objectDetails: [],
       searchedFor: "",
-      searchLoading: true,
-      submitted: false,
-      myFavorites: initialSet,
     };
   },
   methods: {
-    addToList(id) {
-      console.log("listened for " + id);
-      if (this.myFavorites.has(id)) {
-        alert("Already have the item!");
-      }
-      this.myFavorites.add(id);
-    },
-    async fetchObjectDetails() {
-      this.searchLoading = true;
-      return Promise.all(
-        this?.currentObjectPage(14, 1).map((objectId) =>
-          fetch(
-            "https://collectionapi.metmuseum.org/public/collection/v1/objects/" +
-              objectId
-          )
-        )
-      )
-        .then((results) => {
-          return Promise.all(results.map((d) => d.json()));
-        })
-        .then((data) => {
-          this.searchLoading = false;
-          this.objectDetails = data;
-        });
-    },
+    ...mapMutations({
+      setSubmitted: 'setSubmitted',
+      add: 'addToList',
+      setSearchString: 'setSearchString'
+    }),
+   ...mapActions({
+     fetchSearch: 'fetchSearchAsync',
+     fetchObjectDetails: 'fetchObjectDetails'
+    }),
 
-    handleSubmit(e) {
-      e;
+    handleSubmit() {
       console.log(this.searchString);
-      // console.log(e);
+      this.setSearchString({searchString: this.searchString})
       this.searchedFor = this.searchString;
-      this.submitted = true;
-      return this.fetchSearch().then(() => {
+      this.setSubmitted({submitted: true});
+
+      return this.fetchSearch('').then(() => {
         this.fetchObjectDetails();
       });
     },
-
-    async fetchSearch() {
-      const params = new URLSearchParams({
-        q: this.searchString,
-      });
-
-      return fetch(
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?" +
-          params.toString()
-      )
-        .then((resp) => resp.json())
-        .then((data) => {
-          // console.log("Should have assigned the raw results" + data);
-          this.emptySearch = data.total === 0;
-          this.rawResults = data;
-        });
-    },
-    currentObjectPage(count, pageNum) {
-      return this?.rawResults?.objectIDs.slice(pageNum, pageNum + count);
-    },
+    // TODO: Where does this go?
+    // searchedForString: state => {
+    //       return `${getSearchCount} results for '${this.searchedFor}'`;
+    //     }
   },
+  computed: mapState({
+    submitted: (state) => state.submitted,
+    searchLoading: (state)=>state.searchLoading,
+    rawResults: (state) => state.rawResults,
+    objectDetails: (state) => {
+      return state.objectDetails
+    },
+    getSearchCount: (state) =>{
+      return state.getSearchCount;
+    }
+  }),
 
-  computed: {
-    searchedForString: function () {
-      return `${this?.rawResults.total} results for '${this.searchedFor}'`;
-    },
-    searchResults: function () {
-      return null;
-    },
-    topResults: function () {
-      return this?.rawResults?.objectIDs.slice(1, 5);
-    },
-  },
   components: {
     Postcard,
   },
