@@ -10,8 +10,9 @@
 
 <style>
 #app {
-  font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", Helvetica,
-    Arial, sans-serif;
+  --font-sans: "Avenir Next", -apple-system, BlinkMacSystemFont, "Avenir Next",
+    Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
   color: #2c3e50;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -49,5 +50,27 @@ body {
 img {
   height: auto;
   max-width: 100%;
+}
+
+input {
+  font-family: var(--font-sans);
+}
+
+button {
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+
+.spinning {
+  animation: 3s linear 1s infinite alternate spin;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360);
+  }
 }
 </style>
