@@ -21,17 +21,15 @@ export default {
 
 
 <style>
-
 :root {
-  --color-bg: #382D2D;
-  --color-met-red: #E4002B;
+  --color-bg: #382d2d;
+  --color-met-red: #e4002b;
   --color-bg-2: var(--color-met-red);
   --color-text: white;
   --color-links: rgb(255, 111, 111);
   --color-links-active: rgb(255, 111, 111);
-  --font-sans:  "Source Sans Pro", -apple-system, "Avenir Next", BlinkMacSystemFont, Helvetica,
-    Arial, sans-serif;
-
+  --font-sans: "Source Sans Pro", -apple-system, "Avenir Next",
+    BlinkMacSystemFont, Helvetica, Arial, sans-serif;
 }
 
 #app {
@@ -57,8 +55,8 @@ a {
 
 #nav a.router-link-exact-active {
   /* color:  var(--color-links-active); */
-  opacity: .90;
-  text-decoration: none;;
+  opacity: 0.9;
+  text-decoration: none;
 }
 
 * {
@@ -77,12 +75,24 @@ img {
   max-width: 100%;
 }
 
-
 button {
-  background: none;
-border: 1px solid var(--color-links);
-border-radius: 1rem;
-color: var(--color-links);
+  border: 1px solid var(--color-links);
+  border-radius: 1rem;
+  transition: all 0.15s ease;
+  padding: 0.25rem 4rem;
+
+  background: var(--color-links);
+  color: var(--color-bg);
+}
+
+button:active {
+  transform: scale(0.7);
+}
+
+button:hover,
+button:focus {
+  color: var(--color-links);
+  background: rgba(0, 0, 0, 0.75);
 }
 
 input {
@@ -111,16 +121,13 @@ button {
 .header {
   margin-top: 2rem;
   display: flex;
-  justify-content: center;;
-  text-align:center;
-  align-items:center;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   margin-bottom: 1rem;
-
 }
 
 .header__h1 {
   font-weight: normal;
-
 }
-
 </style>

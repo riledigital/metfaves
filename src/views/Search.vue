@@ -1,6 +1,5 @@
 <template>
   <div class="content">
-
     <header class="header"><h1 class="header__h1">Search</h1></header>
 
     <form @submit.prevent="handleSubmit">
@@ -19,7 +18,9 @@
     <div class="search-results">
       <div v-if="emptySearch">None found for {{ searchedFor }}, try again?</div>
       <div v-else-if="!submitted">Enter your search above.</div>
-      <div v-else-if="searchLoading"><span class="spinning">Loading results...</span></div>
+      <div v-else-if="searchLoading">
+        <span class="spinning"><progress>progress</progress></span>
+      </div>
       <div v-else>
         <h3 class="searched-for" v-if="searchedFor">{{ searchedForString }}</h3>
         <div class="card-grid">
@@ -27,6 +28,7 @@
             @added="add"
             v-for="(item, index) in objectDetails"
             v-bind="item"
+            :objectData="item"
             :key="index"
           ></Postcard>
         </div>
@@ -48,24 +50,22 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setSubmitted: 'setSubmitted',
-      add: 'addToList',
-      setSearchString: 'setSearchString'
+      setSubmitted: "setSubmitted",
+      add: "addToList",
+      setSearchString: "setSearchString",
     }),
-   ...mapActions({
-     fetchSearch: 'fetchSearchAsync',
-     fetchObjectDetails: 'fetchObjectDetails'
+    ...mapActions({
+      fetchSearch: "fetchSearchAsync",
+      fetchObjectDetails: "fetchObjectDetails",
     }),
 
     handleSubmit() {
       console.log(this.searchString);
-      this.setSearchString({searchString: this.searchString})
+      this.setSearchString({ searchString: this.searchString });
       this.searchedFor = this.searchString;
-      this.setSubmitted({submitted: true});
+      this.setSubmitted({ submitted: true });
 
-      return this.fetchSearch('').then(() => {
-        this.fetchObjectDetails();
-      });
+      return this.fetchSearch();
     },
     // TODO: Where does this go?
     // searchedForString: state => {
@@ -73,15 +73,16 @@ export default {
     //     }
   },
   computed: mapState({
+    emptySearch: (state) => state.emptySearch,
     submitted: (state) => state.submitted,
-    searchLoading: (state)=>state.searchLoading,
+    searchLoading: (state) => state.searchLoading,
     rawResults: (state) => state.rawResults,
     objectDetails: (state) => {
-      return state.objectDetails
+      return state.objectDetails;
     },
-    getSearchCount: (state) =>{
+    getSearchCount: (state) => {
       return state.getSearchCount;
-    }
+    },
   }),
 
   components: {

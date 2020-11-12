@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
-
+import { DateTime } from "luxon";
+var now = DateTime.local();
 // const initialSet = new Set();
 // const initialSet = [];
 
@@ -8,6 +9,7 @@ export default createStore({
   plugins: [createPersistedState()],
   state: {
     myFavorites: [],
+    emptySearch: false,
     objectDetails: [],
     rawSearchResults: null,
     searchString: "",
@@ -15,6 +17,14 @@ export default createStore({
     submitted: false,
   },
   mutations: {
+    clearFavorites(state) {
+      if (confirm("Do you really want to clear your favorites?")) {
+        state.myFavorites = [];
+      }
+    },
+    setEmptySearch(state, payload) {
+      state.emptySearch = payload.emptySearch;
+    },
     setSubmitted(state, payload) {
       state.submitted = payload.submitted;
     },
@@ -32,10 +42,14 @@ export default createStore({
     },
     addToList(state, payload) {
       console.log("listened for " + payload.id);
-      if (state.myFavorites.includes(payload.id)) {
+      if (state.myFavorites.some((obj) => obj.objectID === payload.objectID)) {
         alert("Already have the item!");
+      } else {
+        state.myFavorites.push({
+          ...payload,
+          appAddedDate: now,
+        });
       }
-      state.myFavorites.push(payload.id);
     },
   },
   actions: {
@@ -53,11 +67,13 @@ export default createStore({
           // console.log("Should have assigned the raw results" + data);
           if (data.total === 0) {
             commit("setRawResults", { rawResults: {} });
+            commit("setEmptySearch", { emptySearch: true });
           } else {
             commit("setRawResults", { rawResults: data });
+            commit("setEmptySearch", { emptySearch: false });
+            this.dispatch("fetchObjectDetails");
           }
-        })
-        .then(() => {});
+        });
     },
 
     fetchObjectDetails({ commit, getters }) {

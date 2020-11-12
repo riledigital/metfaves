@@ -5,8 +5,8 @@
         <img
           class="img"
           :src="
-            primaryImageSmall
-              ? primaryImageSmall
+            objectData?.primaryImageSmall
+              ? objectData?.primaryImageSmall
               : 'https://via.placeholder.com/150'
           "
         />
@@ -17,19 +17,18 @@
         </div>
         <div class="card__info">
           <h4 class="card__title">
-            <a :href="objectURL" class="card__link">{{ title }}</a>
+            <a :href="objectData?.objectURL" class="card__link">{{
+              objectData?.title
+            }}</a>
           </h4>
-          <p>{{ objectDate }}</p>
-          <!-- <p>{{ department }}</p> -->
-          <p>{{ culture }}</p>
-
-          <p>{{ classification }}</p>
+          <p>{{ objectData?.objectDate }}</p>
+          <p>{{ objectData?.classification }}</p>
         </div>
         <div class="card__footer">
           <span class="footer__culture">
-            {{ culture }}
+            {{ objectData?.culture }}
           </span>
-          <span class="footer__dept">{{ department }}</span>
+          <span class="footer__dept">{{ objectData?.department }}</span>
         </div>
       </div>
     </div>
@@ -42,30 +41,11 @@ export default {
   mounted() {
     // debugger;
   },
-  props: [
-    "title",
-    "primaryImage",
-    "department",
-    "primaryImageSmall",
-    "objectDate",
-    "objectURL",
-    "objectID",
-    "classification",
-    "culture",
-    // objectData: Object,
-  ],
+  props: ["objectData"],
   methods: {
     addItem() {
-      let newItem = {
-        id: this.objectID,
-        objectUrl: this.objectURL,
-        imageUrl: this.primaryImage,
-        title: this.title,
-        culture: this.culture,
-        department: this.department,
-      };
-      console.log("lol clicked: " + this.title);
-      this.$emit("added", newItem);
+      console.log("lol clicked: " + this?.objectData.title);
+      this.$emit("added", this.objectData);
     },
   },
 };
@@ -73,16 +53,16 @@ export default {
 
 <style scoped>
 .container {
+  align-items: center;
+  align-content: center;
   place-items: center;
   --padding: 1rem;
   background: gray;
   overflow: hidden;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   position: relative;
   display: flex;
-  /* margin: auto; */
-  margin: .25rem;
-  /* min-width: 150px; */
+  margin: 0.25rem;
   max-height: auto;
 }
 
@@ -103,12 +83,8 @@ export default {
   margin: auto; */
 }
 
-button {
-  padding: 0.25rem 2rem;
-}
-
 .actions {
-  background: rgba(0, 0, 0, 0.5);
+  /* background: rgba(0, 0, 0, 0.5); */
   display: flex;
   justify-content: flex-start;
   align-content: flex-start;
@@ -116,6 +92,9 @@ button {
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
+  position: absolute;
+  margin: auto auto;
+  align-self: center;
 }
 
 .actions > * {
@@ -128,9 +107,13 @@ button {
 }
 
 .overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   box-sizing: border-box;
   color: white;
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-align: left;
   position: absolute;
   top: 0;
@@ -142,6 +125,7 @@ button {
 }
 
 .overlay:hover {
+  background: rgba(0, 0, 0, 0.5);
   opacity: 1;
   transform: translate(0, 0);
 }
@@ -153,9 +137,20 @@ p {
 }
 
 .card__info {
-  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* background: rgba(0, 0, 0, 0.5); */
+  height: auto;
+  width: 100%;
   padding: var(--padding);
-  padding-top: 0;
+  transition: all 0.2s ease;
+  transform: translate(0, -100px);
+}
+
+.overlay:hover > .card__info {
+  transform: translate(0, 0);
 }
 
 .card__footer {
