@@ -130,4 +130,9 @@ button {
 .header__h1 {
   font-weight: normal;
 }
+
+th,
+td {
+  padding: 0.5rem;
+}
 </style>

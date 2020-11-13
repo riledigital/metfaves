@@ -32,7 +32,7 @@ export default createStore({
       state.searchString = payload.searchString;
     },
     setLoading(state, payload) {
-      state.searchLoading = payload.loading;
+      state.searchLoading = payload.searchLoading;
     },
     setRawResults(state, payload) {
       state.rawResults = payload.rawResults;
@@ -40,7 +40,13 @@ export default createStore({
     setObjectDetails(state, payload) {
       state.objectDetails = payload.objectDetails;
     },
+    removeFromFavorites(state, payload) {
+      state.myFavorites = state.myFavorites.filter(
+        (item) => item.objectID !== payload.objectID
+      );
+    },
     addToList(state, payload) {
+      // debugger;
       console.log("listened for " + payload.id);
       if (state.myFavorites.some((obj) => obj.objectID === payload.objectID)) {
         alert("Already have the item!");
@@ -54,7 +60,7 @@ export default createStore({
   },
   actions: {
     fetchSearchAsync({ state, commit }) {
-      commit("setLoading", { loading: true });
+      commit("setLoading", { searchLoading: true });
       const params = new URLSearchParams({
         q: state.searchString,
       });
@@ -77,7 +83,6 @@ export default createStore({
     },
 
     fetchObjectDetails({ commit, getters }) {
-      commit("setLoading", { loading: true });
       return Promise.all(
         getters
           .currentObjectPage(14, 1)
@@ -92,8 +97,8 @@ export default createStore({
           return Promise.all(results.map((d) => d.json()));
         })
         .then((data) => {
-          commit("setLoading", { loading: false });
           commit("setObjectDetails", { objectDetails: data });
+          commit("setLoading", { searchLoading: false });
         });
     },
   },

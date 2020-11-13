@@ -23,23 +23,15 @@
       </div>
       <div v-else>
         <h3 class="searched-for" v-if="searchedFor">{{ searchedForString }}</h3>
-        <div class="card-grid">
-          <Postcard
-            @added="add"
-            v-for="(item, index) in objectDetails"
-            v-bind="item"
-            :objectData="item"
-            :key="index"
-          ></Postcard>
-        </div>
+        <ArchiveList :objectDetails="objectDetails"> </ArchiveList>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Postcard from "../components/Postcard.vue";
 import { mapActions, mapMutations, mapState } from "vuex";
+import ArchiveList from "../components/ArchiveList";
 
 export default {
   data() {
@@ -86,7 +78,7 @@ export default {
   }),
 
   components: {
-    Postcard,
+    ArchiveList,
   },
 };
 </script>
@@ -111,22 +103,6 @@ export default {
 
 .searchbox:focus {
   transform: translate(1vh);
-}
-
-.card-grid {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  align-content: space-around;
-  flex-wrap: wrap;
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); */
-}
-
-.card-grid > * {
-  max-width: 35vw;
-  height: auto;
-  flex-shrink: 3;
 }
 
 .searched-for {

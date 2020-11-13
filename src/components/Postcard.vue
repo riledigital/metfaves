@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide-fade">
+  <transition appear name="slide-fade">
     <div class="container">
       <div class="image-container">
         <img
@@ -13,7 +13,28 @@
       </div>
       <div class="overlay">
         <div class="actions">
-          <button @click="addItem">Add ⊕</button>
+          <button
+            v-if="!added"
+            @click="
+              () => {
+                this.added = true;
+                addItem(objectData);
+              }
+            "
+          >
+            Add ⊕
+          </button>
+          <button
+            v-if="!removed"
+            @click="
+              () => {
+                this.removed = true;
+                removeItem(objectData);
+              }
+            "
+          >
+            Remove
+          </button>
         </div>
         <div class="card__info">
           <h4 class="card__title">
@@ -36,17 +57,25 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "Postcard",
   mounted() {
     // debugger;
   },
   props: ["objectData"],
+  data() {
+    return {
+      added: false,
+      removed: false,
+    };
+  },
   methods: {
-    addItem() {
-      console.log("lol clicked: " + this?.objectData.title);
-      this.$emit("added", this.objectData);
-    },
+    ...mapMutations({
+      addItem: "addToList",
+      removeItem: "removeFromFavorites",
+    }),
   },
 };
 </script>
@@ -195,12 +224,12 @@ p {
 }
 
 .slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateX(20px);
+  transform: translateY(-50px);
   opacity: 0;
 }
 </style>
