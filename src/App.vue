@@ -1,20 +1,18 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> •
-    <router-link to="/test">Test</router-link> •
-    <router-link to="/search">Search</router-link> •
-    <router-link to="/favorites">Favorites</router-link> •
-  </div>
+  <AppHeader />
   <router-view />
 </template>
 
 <script>
 
 import "normalize.css";
+import AppHeader from "@/components/AppHeader.vue";
 
 export default {
   name: "MetFaves",
+  components: {
+    AppHeader
+  },
   mounted() {
     console.info("mounted the #app");
   },
