@@ -1,30 +1,28 @@
 <template>
-  <div class="content">
-    <header class="header"><h1 class="header__h1">Search</h1></header>
+  <header class="header"><h1 class="header__h1">Search</h1></header>
 
-    <form @submit.prevent="handleSubmit">
-      <input
-        class="searchbox"
-        v-model="searchString"
-        type="text"
-        placeholder="Search for an item"
-      />
-    </form>
-    <div class="alerts"></div>
-    <div class="my-list">
-      {{ getSearchCount }}
-      {{ myFavorites }}
+  <form class="form" @submit.prevent="handleSubmit">
+    <input
+      class="searchbox"
+      v-model="searchString"
+      type="text"
+      placeholder="Search for an item"
+    />
+  </form>
+  <div class="alerts"></div>
+  <div class="my-list">
+    {{ getSearchCount }}
+    {{ myFavorites }}
+  </div>
+  <div class="search-results">
+    <div v-if="emptySearch">None found for {{ searchedFor }}, try again?</div>
+    <div v-else-if="!submitted">Enter your search above.</div>
+    <div v-else-if="searchLoading">
+      <span class="spinning"><progress>progress</progress></span>
     </div>
-    <div class="search-results">
-      <div v-if="emptySearch">None found for {{ searchedFor }}, try again?</div>
-      <div v-else-if="!submitted">Enter your search above.</div>
-      <div v-else-if="searchLoading">
-        <span class="spinning"><progress>progress</progress></span>
-      </div>
-      <div v-else>
-        <h3 class="searched-for" v-if="searchedFor">{{ searchedForString }}</h3>
-        <ArchiveList :objectDetails="objectDetails"> </ArchiveList>
-      </div>
+    <div v-else>
+      <h3 class="searched-for" v-if="searchedFor">{{ searchedForString }}</h3>
+      <ArchiveList :objectDetails="objectDetails"> </ArchiveList>
     </div>
   </div>
 </template>
@@ -58,11 +56,7 @@ export default {
       this.setSubmitted({ submitted: true });
 
       return this.fetchSearch();
-    },
-    // TODO: Where does this go?
-    // searchedForString: state => {
-    //       return `${getSearchCount} results for '${this.searchedFor}'`;
-    //     }
+    }
   },
   computed: mapState({
     emptySearch: (state) => state.emptySearch,
@@ -84,13 +78,13 @@ export default {
 </script>
 
 <style scoped>
-.content {
-  margin: 2rem;
+
+.form {
+  max-width: 100%;
 }
 
 .searchbox {
   box-sizing: border-box;
-  min-width: 100%;
   font-size: 2rem;
   padding: 1rem;
   /* height: 1.5rem; */
@@ -102,16 +96,16 @@ export default {
 }
 
 .searchbox:focus {
-  transform: translate(1vh);
+  /* transform: translate(1vh); */
 }
 
 .searched-for {
   font-size: 1.5rem;
-  margin: 1rem 0;
+  /* margin: 1rem 0; */
 }
 
 .search-results {
-  margin: 2rem;
+  /* margin: 2rem; */
   font-size: 1.5rem;
 }
 

@@ -25,23 +25,21 @@ export default {
 </script>
 
 <style scoped>
-.content {
-  margin: 2rem;
-}
 
 .card-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   flex-direction: row;
-  align-items: center;
-  align-content: space-around;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); */
 }
 
-.card-grid > * {
-  max-width: 35vw;
-  height: auto;
-  flex-shrink: 3;
+@media screen and (min-width: 600px) {
+.card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
 }
+
 </style>

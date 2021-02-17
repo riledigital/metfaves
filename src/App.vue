@@ -10,6 +10,9 @@
 </template>
 
 <script>
+
+import "normalize.css";
+
 export default {
   name: "MetFaves",
   mounted() {
@@ -33,15 +36,13 @@ export default {
 }
 
 #app {
-  font-family: var(--font-sans);
-  color: var(--color-text);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
 }
 
 #nav {
   background: var(--color-bg-2);
   padding: 1rem;
+  width: 100%;
 }
 
 a {
@@ -58,14 +59,18 @@ a {
   opacity: 0.9;
   text-decoration: none;
 }
-
+/* Resets */
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
   font-size: 18px;
   line-height: 1.35;
 }
@@ -77,16 +82,17 @@ img {
 
 button {
   border: 1px solid var(--color-links);
-  border-radius: 1rem;
+  border-radius: .5rem;
   transition: all 0.15s ease;
   padding: 0.25rem 4rem;
-
   background: var(--color-links);
   color: var(--color-bg);
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 button:active {
-  transform: scale(0.7);
+  transform: scale(0.95);
 }
 
 button:hover,
@@ -97,6 +103,12 @@ button:focus {
 
 input {
   font-family: var(--font-sans);
+  font-size: 1.5rem;
+  padding: .5rem;
+  /* height: 1.5rem; */
+  background-color: #eaeaea;
+  border: none;
+  border-radius: 8px;
 }
 
 button {
@@ -119,16 +131,17 @@ button {
 
 /* Reusable */
 .header {
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  margin-bottom: 1rem;
+  /* justify-content: center; */
+  /* text-align: center; */
+  /* align-items: center; */
+  /* margin-bottom: 1rem; */
 }
 
 .header__h1 {
-  font-weight: normal;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 th,

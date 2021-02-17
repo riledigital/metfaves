@@ -85,7 +85,7 @@ export default createStore({
     fetchObjectDetails({ commit, getters }) {
       return Promise.all(
         getters
-          .currentObjectPage(14, 1)
+          .currentObjectPage(20, 1)
           .map((objectId) =>
             fetch(
               "https://collectionapi.metmuseum.org/public/collection/v1/objects/" +
