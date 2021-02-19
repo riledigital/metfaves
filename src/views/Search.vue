@@ -1,4 +1,5 @@
 <template>
+<div>
   <header class="header"><h1 class="header__h1">Search</h1></header>
 
   <form class="form" @submit.prevent="handleSubmit">
@@ -25,28 +26,29 @@
       <ArchiveList :objectDetails="objectDetails"> </ArchiveList>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
-import { mapActions, mapMutations, mapState } from "vuex";
-import ArchiveList from "../components/ArchiveList";
+import { mapActions, mapMutations, mapState } from 'vuex';
+import ArchiveList from '../components/ArchiveList';
 
 export default {
   data() {
     return {
       emptySearch: false,
-      searchedFor: "",
+      searchedFor: '',
     };
   },
   methods: {
     ...mapMutations({
-      setSubmitted: "setSubmitted",
-      add: "addToList",
-      setSearchString: "setSearchString",
+      setSubmitted: 'setSubmitted',
+      add: 'addToList',
+      setSearchString: 'setSearchString',
     }),
     ...mapActions({
-      fetchSearch: "fetchSearchAsync",
-      fetchObjectDetails: "fetchObjectDetails",
+      fetchSearch: 'fetchSearchAsync',
+      fetchObjectDetails: 'fetchObjectDetails',
     }),
 
     handleSubmit() {

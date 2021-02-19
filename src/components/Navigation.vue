@@ -7,14 +7,15 @@
 <script>
 export default {
   name: 'Navigation',
-  data: () => ({ links: [
-    { 'route': '/about',
-      'name': 'About' },
-    { 'route': '/search',
-      'name': 'Search' },
-    { 'route': '/Favorites',
-      'name': 'Favorites' }
-  ] })
+  data: () => ({
+    links: [
+      { 'route': '/about',
+        'name': 'About' },
+      { 'route': '/search',
+        'name': 'Search' },
+      { 'route': '/Favorites',
+        'name': 'Favorites' }
+    ] })
 };
 </script>
 
@@ -28,4 +29,19 @@ export default {
   width: 100%;
 }
 
+.link {
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem;
+    transition: color 200ms ease;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+
+.router-link-active {
+    color: var(--color-bg);
+}
 </style>

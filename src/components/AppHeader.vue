@@ -28,5 +28,6 @@ export default {
 
 .header__branding {
   font-weight: bold;
+  pointer-events: none;
 }
 </style>

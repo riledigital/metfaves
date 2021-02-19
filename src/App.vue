@@ -28,13 +28,13 @@ export default {
 
 <style>
 :root {
-  --color-bg: #382d2d;
+  --color-bg: #393939;
   --color-met-red: #e4002b;
   --color-bg-2: var(--color-met-red);
   --color-text: white;
   --color-links: rgb(255, 111, 111);
   --color-links-active: rgb(255, 111, 111);
-  --font-sans: "Source Sans Pro", -apple-system, "Avenir Next",
+  --font-sans: "Source Sans 3", -apple-system, "Avenir Next",
     BlinkMacSystemFont, Helvetica, Arial, sans-serif;
 }
 
@@ -42,13 +42,9 @@ export default {
 
 }
 
-
-
 a:link {
   color: var(--color-links);
 }
-
-
 
 #nav a.router-link-exact-active {
   /* color:  var(--color-links-active); */
