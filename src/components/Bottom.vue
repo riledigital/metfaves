@@ -1,7 +1,7 @@
 <template>
-    <div class="bottom">
-        <Navigation />
-        </div>
+  <div class="bottom">
+    <Navigation />
+  </div>
 </template>
 
 <script>

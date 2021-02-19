@@ -1,9 +1,9 @@
 <template>
-<header class="header">
-<span class="header__branding">
-  MetFaves
-</span>
-</header>
+  <header class="header">
+    <span class="header__branding">
+      MetFaves
+    </span>
+  </header>
 </template>
 
 <script>

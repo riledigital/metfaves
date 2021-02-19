@@ -1,9 +1,9 @@
 <template>
-<div>
-Search for a work.
+  <div>
+    Search for a work.
 
-<Search/>
-</div>
+    <Search/>
+  </div>
 </template>
 
 <script>

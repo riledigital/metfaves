@@ -3,9 +3,10 @@
     <div class="container">
       <div class="image-container">
         <img
+          loading="lazy"
           class="img"
           :src="
-              objectData?.primaryImageSmall ??
+            objectData?.primaryImageSmall ??
               'https://via.placeholder.com/150'
           "
         />

@@ -1,6 +1,6 @@
-import { createStore } from "vuex";
-import createPersistedState from "vuex-persistedstate";
-import { DateTime } from "luxon";
+import { createStore } from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
+import { DateTime } from 'luxon';
 const now = DateTime.local();
 export default createStore({
   plugins: [createPersistedState()],
@@ -9,13 +9,13 @@ export default createStore({
     emptySearch: false,
     objectDetails: [],
     rawSearchResults: null,
-    searchString: "",
+    searchString: '',
     searchLoading: false,
     submitted: false,
   },
   mutations: {
     clearFavorites(state) {
-      if (confirm("Do you really want to clear your favorites?")) {
+      if (confirm('Do you really want to clear your favorites?')) {
         state.myFavorites = [];
       }
     },
@@ -44,7 +44,7 @@ export default createStore({
       // debugger;
       console.log(`listened for ${payload.id}`);
       if (state.myFavorites.some((obj) => obj.objectID === payload.objectID)) {
-        alert("Already have the item!");
+        alert('Already have the item!');
       } else {
         state.myFavorites.push({
           ...payload,
@@ -56,37 +56,37 @@ export default createStore({
   actions: {
     fetchSearchAsync({ state, commit }) {
       commit(
-        "setLoading",
+        'setLoading',
         { searchLoading: true }
       );
       const params = new URLSearchParams({
         q: state.searchString,
       });
 
-return fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?${
+      return fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?${
         params.toString()}`)
         .then((resp) => resp.json())
         .then((data) => {
           // console.log("Should have assigned the raw results" + data);
           if (data.total === 0) {
             commit(
-              "setRawResults",
+              'setRawResults',
               { rawResults: {} }
             );
             commit(
-              "setEmptySearch",
+              'setEmptySearch',
               { emptySearch: true }
             );
           } else {
             commit(
-              "setRawResults",
+              'setRawResults',
               { rawResults: data }
             );
             commit(
-              "setEmptySearch",
+              'setEmptySearch',
               { emptySearch: false }
             );
-            this.dispatch("fetchObjectDetails");
+            this.dispatch('fetchObjectDetails');
           }
         });
     },
@@ -102,11 +102,11 @@ return fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?${
         .then((results) => Promise.all(results.map((d) => d.json())))
         .then((data) => {
           commit(
-            "setObjectDetails",
+            'setObjectDetails',
             { objectDetails: data }
           );
           commit(
-            "setLoading",
+            'setLoading',
             { searchLoading: false }
           );
         });

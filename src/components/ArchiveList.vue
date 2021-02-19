@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import Postcard from "./Postcard.vue";
+import Postcard from './Postcard.vue';
 
 export default {
-  name: "Cards",
-  props: ["objectDetails"],
+  name: 'Cards',
+  props: ['objectDetails'],
   components: {
     Postcard,
   },

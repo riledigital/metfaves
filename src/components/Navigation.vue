@@ -22,7 +22,7 @@ export default {
 <style scoped>
 
 .nav {
-  /* background: var(--color-bg-2); */
+background: var(--color-red);
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -30,10 +30,12 @@ export default {
 }
 
 .link {
+    background: var(--color-red);
+    border-radius: 1rem;
     color: white;
     font-weight: bold;
-    padding: 0.5rem;
-    transition: color 200ms ease;
+    padding: 0.75rem;
+    transition: color 200ms ease, transform 200ms ease-in-out;
 }
 
 a:link {
@@ -42,6 +44,7 @@ a:link {
 
 
 .router-link-active {
-    color: var(--color-bg);
+    color: var(--color-gray);
+    transform: translateY(-1rem);
 }
 </style>

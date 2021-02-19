@@ -5,18 +5,18 @@
 </template>
 
 <script>
-import BaseStyles from "../components/BaseStyles.vue";
-import Postcard from "../components/Postcard.vue";
+import BaseStyles from '../components/BaseStyles.vue';
+import Postcard from '../components/Postcard.vue';
 const objectId = 45432;
-const URL_BASE = "https://collectionapi.metmuseum.org";
+const URL_BASE = 'https://collectionapi.metmuseum.org';
 let useFetchy = 0;
 
 export default {
-  name: "Test",
+  name: 'Test',
   created() {
-    console.log("lol mounted");
+    console.log('lol mounted');
     if (useFetchy) {
-      fetch(URL_BASE + "/public/collection/v1/objects/" + objectId)
+      fetch(URL_BASE + '/public/collection/v1/objects/' + objectId)
         .then((resp) => resp.json())
         .then((data) => {
           this.theObject = data;
@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      theObject: { title: "Test" },
+      theObject: { title: 'Test' },
     };
   },
   components: { Postcard, BaseStyles },

@@ -1,8 +1,9 @@
 <template>
   <div>
-  <AppHeader />
-  <router-view />
-  <Bottom />
+    <AppHeader />
+    <router-view />
+    <Notification @showNotification="handleNotification"/>
+    <Bottom />
   </div>
 </template>
 
@@ -16,23 +17,23 @@ export default {
   name: 'MetFaves',
   components: {
     AppHeader,
-    Bottom
+    Bottom,
   },
   mounted() {
     console.info('mounted the #app');
-  },
-  // store,
+  }
 };
 </script>
 
 
 <style>
 :root {
-  --color-bg: #393939;
-  --color-met-red: #e4002b;
-  --color-bg-2: var(--color-met-red);
+  --color-gray: #393939;
+  --color-red: #e4002b;
   --color-text: white;
-  --color-links: rgb(255, 111, 111);
+  --color-bg: #393939;
+  --color-bg-2: var(--color-met-red);
+  --color-links: var(--color-red);
   --color-links-active: rgb(255, 111, 111);
   --font-sans: "Source Sans 3", -apple-system, "Avenir Next",
     BlinkMacSystemFont, Helvetica, Arial, sans-serif;

@@ -1,31 +1,31 @@
 <template>
-<div>
-  <header class="header"><h1 class="header__h1">Search</h1></header>
+  <div>
+    <header class="header"><h1 class="header__h1">Search</h1></header>
 
-  <form class="form" @submit.prevent="handleSubmit">
-    <input
-      class="searchbox"
-      v-model="searchString"
-      type="text"
-      placeholder="Search for an item"
-    />
-  </form>
-  <div class="alerts"></div>
-  <div class="my-list">
-    {{ getSearchCount }}
-    {{ myFavorites }}
-  </div>
-  <div class="search-results">
-    <div v-if="emptySearch">None found for {{ searchedFor }}, try again?</div>
-    <div v-else-if="!submitted">Enter your search above.</div>
-    <div v-else-if="searchLoading">
-      <span class="spinning"><progress>progress</progress></span>
+    <form class="form" @submit.prevent="handleSubmit">
+      <input
+        class="searchbox"
+        v-model="searchString"
+        type="text"
+        placeholder="Search for an item"
+      />
+    </form>
+    <div class="alerts"></div>
+    <div class="my-list">
+      {{ getSearchCount }}
+      {{ myFavorites }}
     </div>
-    <div v-else>
-      <h3 class="searched-for" v-if="searchedFor">{{ searchedForString }}</h3>
-      <ArchiveList :objectDetails="objectDetails"> </ArchiveList>
+    <div class="search-results">
+      <div v-if="emptySearch">None found for {{ searchedFor }}, try again?</div>
+      <div v-else-if="!submitted">Enter your search above.</div>
+      <div v-else-if="searchLoading">
+        <span class="spinning"><progress>progress</progress></span>
+      </div>
+      <div v-else>
+        <h3 class="searched-for" v-if="searchedFor">{{ searchedForString }}</h3>
+        <ArchiveList :objectDetails="objectDetails"> </ArchiveList>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 

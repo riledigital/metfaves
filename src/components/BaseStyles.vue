@@ -260,7 +260,7 @@ P R E F O R M A T T E D T E X T
             </p>
             <p>
               <q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q"
-                >This text is a short inline quotation.</q
+              >This text is a short inline quotation.</q
               >
             </p>
             <p><cite>This is a citation.</cite></p>
@@ -477,24 +477,24 @@ P R E F O R M A T T E D T E X T
             <ul class="list list--bare">
               <li>
                 <label for="checkbox1"
-                  ><input
-                    id="checkbox1"
-                    name="checkbox"
-                    type="checkbox"
-                    checked="checked"
-                  />
+                ><input
+                  id="checkbox1"
+                  name="checkbox"
+                  type="checkbox"
+                  checked="checked"
+                />
                   Choice A</label
                 >
               </li>
               <li>
                 <label for="checkbox2"
-                  ><input id="checkbox2" name="checkbox" type="checkbox" />
+                ><input id="checkbox2" name="checkbox" type="checkbox" />
                   Choice B</label
                 >
               </li>
               <li>
                 <label for="checkbox3"
-                  ><input id="checkbox3" name="checkbox" type="checkbox" />
+                ><input id="checkbox3" name="checkbox" type="checkbox" />
                   Choice C</label
                 >
               </li>
@@ -506,25 +506,25 @@ P R E F O R M A T T E D T E X T
             <ul class="list list--bare">
               <li>
                 <label for="radio1"
-                  ><input
-                    id="radio1"
-                    name="radio"
-                    type="radio"
-                    class="radio"
-                    checked="checked"
-                  />
+                ><input
+                  id="radio1"
+                  name="radio"
+                  type="radio"
+                  class="radio"
+                  checked="checked"
+                />
                   Option 1</label
                 >
               </li>
               <li>
                 <label for="radio2"
-                  ><input id="radio2" name="radio" type="radio" class="radio" />
+                ><input id="radio2" name="radio" type="radio" class="radio" />
                   Option 2</label
                 >
               </li>
               <li>
                 <label for="radio3"
-                  ><input id="radio3" name="radio" type="radio" class="radio" />
+                ><input id="radio3" name="radio" type="radio" class="radio" />
                   Option 3</label
                 >
               </li>
@@ -610,7 +610,7 @@ P R E F O R M A T T E D T E X T
 
 <script>
 export default {
-  name: "BaseStyles",
+  name: 'BaseStyles',
 };
 </script>
 

@@ -1,6 +1,8 @@
 {
   "allowJs": true,
   "compilerOptions": {
+    "module": "es6",
+    "target": "esnext",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
