@@ -1,7 +1,9 @@
 <template>
-  <h1>This is a test page!</h1>
-  <Postcard v-bind="theObject" />
-  <BaseStyles v-if="true" />
+  <main>
+    <h1>This is a test page!</h1>
+    <Postcard v-bind="theObject" />
+    <BaseStyles v-if="true" />
+  </main>
 </template>
 
 <script>

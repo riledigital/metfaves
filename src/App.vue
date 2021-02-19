@@ -37,6 +37,8 @@ export default {
   --color-links-active: rgb(255, 111, 111);
   --font-sans: "Source Sans 3", -apple-system, "Avenir Next",
     BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+
+  --margin-base: 1rem;
 }
 
 body {
