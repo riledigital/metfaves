@@ -1,20 +1,25 @@
 <template>
+  <div>
   <AppHeader />
   <router-view />
+  <Bottom />
+  </div>
 </template>
 
 <script>
 
-import "normalize.css";
-import AppHeader from "@/components/AppHeader.vue";
+import 'normalize.css';
+import AppHeader from '@/components/AppHeader.vue';
+import Bottom from '@/components/Bottom.vue';
 
 export default {
-  name: "MetFaves",
+  name: 'MetFaves',
   components: {
-    AppHeader
+    AppHeader,
+    Bottom
   },
   mounted() {
-    console.info("mounted the #app");
+    console.info('mounted the #app');
   },
   // store,
 };
@@ -37,20 +42,13 @@ export default {
 
 }
 
-#nav {
-  background: var(--color-bg-2);
-  padding: 1rem;
-  width: 100%;
-}
 
-a {
+
+a:link {
   color: var(--color-links);
 }
 
-#nav a {
-  font-weight: bold;
-  color: var(--color-text);
-}
+
 
 #nav a.router-link-exact-active {
   /* color:  var(--color-links-active); */

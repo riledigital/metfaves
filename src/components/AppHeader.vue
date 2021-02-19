@@ -1,29 +1,32 @@
 <template>
-<header>
-<span class="app-title">
+<header class="header">
+<span class="header__branding">
   MetFaves
 </span>
-  <div id="nav">
-    <router-link v-for="link in links" :to="link.route" :key="link.name">{{ link.name }}</router-link>
-  </div>
 </header>
 </template>
 
 <script>
 export default {
-    name: 'AppHeader',
-    data: () => {
-      return ({links: [
-        {'route': '/about', 'name': 'About'},
-        {'route': '/search', 'name': 'Search'},
-        {'route': '/Favorites', 'name': 'Favorites'}
-      ]});
-    }
-}
+  name: 'AppHeader'
+};
 </script>
 
 <style scoped>
 .app-title {
   display: inline-block;
+}
+
+
+
+.header {
+  display: flex;
+  gap: 1rem;
+  padding: .5rem;
+  justify-content: center;
+}
+
+.header__branding {
+  font-weight: bold;
 }
 </style>

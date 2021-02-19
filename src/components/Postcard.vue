@@ -5,9 +5,8 @@
         <img
           class="img"
           :src="
-            objectData?.primaryImageSmall
-              ? objectData?.primaryImageSmall
-              : 'https://via.placeholder.com/150'
+              objectData?.primaryImageSmall ??
+              'https://via.placeholder.com/150'
           "
         />
       </div>
@@ -57,14 +56,14 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations } from 'vuex';
 
 export default {
-  name: "Postcard",
+  name: 'Postcard',
   mounted() {
     // debugger;
   },
-  props: ["objectData"],
+  props: ['objectData'],
   data() {
     return {
       added: false,
@@ -73,8 +72,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      addItem: "addToList",
-      removeItem: "removeFromFavorites",
+      addItem: 'addToList',
+      removeItem: 'removeFromFavorites',
     }),
   },
 };
