@@ -42,8 +42,10 @@
               objectData?.title
             }}</a>
           </h4>
-          <p>{{ objectData?.objectDate }}</p>
-          <p>{{ objectData?.classification }}</p>
+          <div class="card__meta">
+            <p>{{ objectData?.objectDate }}</p>
+            <p>{{ objectData?.classification }}</p>
+          </div>
         </div>
         <div class="card__footer">
           <span class="footer__culture">
@@ -215,6 +217,9 @@ p {
 
 .card__title {
   font-size: 1rem;
+}
+
+.card__meta {
 }
 
 /* Enter and leave animations can use different */

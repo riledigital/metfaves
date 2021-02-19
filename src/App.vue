@@ -39,8 +39,8 @@ export default {
     BlinkMacSystemFont, Helvetica, Arial, sans-serif;
 }
 
-#app {
-
+body {
+  overscroll-behavior: none;
 }
 
 a:link {
