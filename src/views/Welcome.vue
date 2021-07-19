@@ -1,15 +1,5 @@
 <template>
-  <div>
-    Register for an account!
-
-    <form @submit.prevent @submit="registerApi" class="form">
-      <input v-model="name" placeholder="Name" />
-      <input v-model="email" placeholder="Email" />
-      <input v-model="bio" placeholder="Bio" />
-      {{ response.status }} {{ response }}
-      <button>Register</button>
-    </form>
-  </div>
+  <div>Welcome {{ name }}!</div>
 </template>
 
 <script>
@@ -17,27 +7,23 @@
  * @ is an alias to /src
  * import HelloWorld from '@/components/HelloWorld.vue'
  */
+// import { mapMutations } from 'vuex';
 
 export default {
-  name: 'Home',
-  data: function() {
+  name: 'Welcome',
+  components: {},
+  data() {
     return {
-      name: '',
-      email: '',
-      bio: '',
-      response: '',
-      data: ''
+      name: ''
     };
   },
-  components: {},
+  mounted() {
+    this.name = this.$store.sessionUsername;
+  },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
-      this.registerApi();
-    },
     async registerApi() {
       try {
-       
+
         const postBody = { name: this.name, email: this.email, bio: this.bio };
         const resp = await fetch(process.env.VUE_APP_API_BASE + '/user', {
           method: 'POST',
@@ -49,14 +35,15 @@ export default {
         });
         this.data = await resp.text();
         this.response = resp;
-        if (resp.status == 200) { 
+        if (resp.status == 200) {
           this.$router.push('welcome');
-          this.$store.commit('setSessionUser', {id: this.data.id, name: this.data.name})
+          this.$store.commit('setSessionUser', {id: this.data.id, name: this.data.name});
         }
         console.log('REDIRECT');
       } catch (err) { }
     }
   }
+  
 };
 </script>
 

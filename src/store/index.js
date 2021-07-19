@@ -54,6 +54,13 @@ export default createStore({
         });
       }
     },
+    setSessionUser(state, payload) {
+      const { id, name } = payload;
+      state.sessionUserId = id;
+      state.sessionUsername = name;
+      console.debug('Logged in as:', {id, name});
+      
+    }
   },
   actions: {
     fetchSearchAsync({ state, commit }) {
