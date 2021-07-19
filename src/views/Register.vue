@@ -25,7 +25,8 @@ export default {
       name: '',
       email: '',
       bio: '',
-      response: ''
+      response: '',
+      data: ''
     };
   },
   components: {},
@@ -35,18 +36,24 @@ export default {
       this.registerApi();
     },
     async registerApi() {
-      const postBody = { name: this.name, email: this.email, bio: this.bio };
-      const resp = await fetch(process.env.VUE_APP_API_BASE + '/user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        // mode: 'no-cors',
-        body: JSON.stringify(postBody)
-      });
-      const data = resp;
-      console.log(data);
-      this.response = await data.text();
+      try {
+       
+        const postBody = { name: this.name, email: this.email, bio: this.bio };
+        const resp = await fetch(process.env.VUE_APP_API_BASE + '/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          // mode: 'no-cors',
+          body: JSON.stringify(postBody)
+        });
+        this.data = await resp.text();
+        this.response = resp;
+        if (resp.status == 200) { 
+          this.$router.push('welcome'); 
+        }
+        console.log('REDIRECT');
+      } catch (err) { }
     }
   }
 };
