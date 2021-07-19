@@ -1,5 +1,5 @@
 <template>
-  <div>Welcome {{ name }}!</div>
+  <div>Welcome {{ sessionUsername }}!</div>
 </template>
 
 <script>
@@ -8,17 +8,19 @@
  * import HelloWorld from '@/components/HelloWorld.vue'
  */
 // import { mapMutations } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Welcome',
   components: {},
+  computed: mapState({
+    sessionUserId: state => state.sessionUserId,
+    sessionUsername: state => state.sessionUsername,
+  }),
   data() {
     return {
-      name: ''
+      store: this.$store
     };
-  },
-  mounted() {
-    this.name = this.$store.sessionUsername;
   },
   methods: {
     async registerApi() {

@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 import { DateTime } from 'luxon';
 const now = DateTime.local();
+
 export default createStore({
   plugins: [createPersistedState()],
   state: {
@@ -12,7 +13,7 @@ export default createStore({
     searchString: '',
     searchLoading: false,
     submitted: false,
-    sessionUserId: '',
+    sessionUserId: 'v',
     sessionUsername: ''
   },
   mutations: {
@@ -56,9 +57,9 @@ export default createStore({
     },
     setSessionUser(state, payload) {
       const { id, name } = payload;
+      console.log('Set login state as:', payload);
       state.sessionUserId = id;
       state.sessionUsername = name;
-      console.debug('Logged in as:', {id, name});
       
     }
   },

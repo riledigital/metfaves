@@ -17,6 +17,7 @@
  * @ is an alias to /src
  * import HelloWorld from '@/components/HelloWorld.vue'
  */
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'Home',
@@ -31,6 +32,7 @@ export default {
   },
   components: {},
   methods: {
+    ...mapMutations(['setSessionUser']),
     handleSubmit(e) {
       e.preventDefault();
       this.registerApi();
@@ -47,13 +49,15 @@ export default {
           // mode: 'no-cors',
           body: JSON.stringify(postBody)
         });
-        this.data = await resp.text();
+        const data = await resp.json();
+        this.data = data;
         this.response = resp;
-        if (resp.status == 200) { 
+        console.log(data);
+        this.setSessionUser({id: data.id, name: data.name});
+        if (this.response.status === 200) { 
+          console.log('redirecting!');
           this.$router.push('welcome');
-          this.$store.commit('setSessionUser', {id: this.data.id, name: this.data.name})
         }
-        console.log('REDIRECT');
       } catch (err) { }
     }
   }

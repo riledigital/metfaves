@@ -2,7 +2,7 @@
   <div>
     <AppHeader />
     <router-view />
-    <Notification @showNotification="handleNotification"/>
+    <!-- <Notification @showNotification="handleNotification"/> -->
     <Bottom />
   </div>
 </template>
