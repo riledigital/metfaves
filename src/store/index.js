@@ -12,7 +12,8 @@ export default createStore({
     searchString: '',
     searchLoading: false,
     submitted: false,
-    sessionUserId: ''
+    sessionUserId: '',
+    sessionUsername: ''
   },
   mutations: {
     clearFavorites(state) {

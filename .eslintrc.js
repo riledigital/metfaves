@@ -19,7 +19,8 @@ module.exports = {
   },
   'plugins': [
     'vue',
-    'eslint-plugin-vue'
+    'eslint-plugin-vue',
+    'prettier'
   ],
   'rules': {
     'vue/no-parsing-error': ['warn'],
