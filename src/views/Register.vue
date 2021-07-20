@@ -56,7 +56,7 @@ export default {
         this.setSessionUser({id: data.id, name: data.name});
         if (this.response.status === 200) { 
           console.log('redirecting!');
-          this.$router.push('welcome');
+          this.$router.push('profile');
         }
       } catch (err) { }
     }

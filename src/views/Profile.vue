@@ -1,6 +1,11 @@
 <template>
-  <div>Welcome {{ sessionUsername }}!
-    <user-collections @user="sessionUserId"></user-collections>
+  <div v-if="!loggedIn">You are not currently logged in. 
+    <router-link to="/register">Register</router-link> to get started!</div>
+  <div v-else>
+    <div>
+      Welcome {{ sessionUsername }}!
+      <user-collections @user="sessionUserId"></user-collections>
+    </div>
   </div>
 </template>
 
@@ -11,16 +16,18 @@ import UserCollections from '@/components/UserCollections.vue';
  * import HelloWorld from '@/components/HelloWorld.vue'
  */
 // import { mapMutations } from 'vuex';
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
-  name: 'Welcome',
+  name: 'Profile',
   components: {UserCollections},
-  computed: mapState({
-    sessionUserId: state => state.sessionUserId,
-    sessionUsername: state => state.sessionUsername,
-    userCollections: state => state.userCollections
-  }),
+  computed: {
+    ...mapState({
+      sessionUserId: state => state.sessionUserId,
+      sessionUsername: state => state.sessionUsername,
+      userCollections: state => state.userCollections}), 
+    ...mapGetters(['loggedIn'])
+  },
   data() {
     return {
       store: this.$store
