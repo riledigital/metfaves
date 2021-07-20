@@ -20,14 +20,19 @@ const routes = [
       component: Search,
     },
     {
-      path: '/Favorites',
+      path: '/favorites',
       name: 'Favorites',
       component: () => import('../views/Favorites.vue'),
     },
     {
-      path: '/Register',
+      path: '/register',
       name: 'Register',
       component: () => import('../views/Register.vue'),
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: () => import('../views/Profile.vue'),
     },
 
     {
