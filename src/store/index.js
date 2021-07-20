@@ -14,7 +14,9 @@ export default createStore({
     searchLoading: false,
     submitted: false,
     sessionUserId: 'v',
-    sessionUsername: ''
+    sessionUsername: '',
+    loggedIn: false,
+    userCollections: []
   },
   mutations: {
     clearFavorites(state) {
@@ -55,12 +57,18 @@ export default createStore({
         });
       }
     },
+    setLogout(state) {
+      state.sessionUserId = null;
+      state.sessionUsername = null;
+      state.loggedIn = false;
+      console.log('Logged out.');
+    },
     setSessionUser(state, payload) {
       const { id, name } = payload;
       console.log('Set login state as:', payload);
       state.sessionUserId = id;
       state.sessionUsername = name;
-      
+      state.loggedIn = true;
     }
   },
   actions: {
@@ -100,7 +108,18 @@ export default createStore({
           }
         });
     },
-
+    
+    async fetchCollectionsForUser({ state }, payload ) {
+      console.debug('fetch collections for user:', payload);
+      const params = new URLSearchParams({ user: payload.user });
+      const resp = await fetch(`${process.env.VUE_APP_API_BASE}/collections?${params}`,
+        {
+          method: 'GET',
+        });
+      const data = await resp.json();
+      state.userCollections = data;
+    },
+    
     fetchObjectDetails({ commit, getters }) {
       return Promise.all(getters
         .currentObjectPage(
@@ -129,7 +148,7 @@ export default createStore({
       pageNum + count
     ),
     getSearchCount: (state) => state.rawSearchResults?.total,
-
+    loggedIn: (state) => state.loggedIn,
     /*
      * searchResults: (state) => {
      *   return null;

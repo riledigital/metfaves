@@ -1,8 +1,11 @@
 <template>
-  <div>Welcome {{ sessionUsername }}!</div>
+  <div>Welcome {{ sessionUsername }}!
+    <user-collections @user="sessionUserId"></user-collections>
+  </div>
 </template>
 
 <script>
+import UserCollections from '@/components/UserCollections.vue';
 /*
  * @ is an alias to /src
  * import HelloWorld from '@/components/HelloWorld.vue'
@@ -12,10 +15,11 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Welcome',
-  components: {},
+  components: {UserCollections},
   computed: mapState({
     sessionUserId: state => state.sessionUserId,
     sessionUsername: state => state.sessionUsername,
+    userCollections: state => state.userCollections
   }),
   data() {
     return {
@@ -25,7 +29,6 @@ export default {
   methods: {
     async registerApi() {
       try {
-
         const postBody = { name: this.name, email: this.email, bio: this.bio };
         const resp = await fetch(process.env.VUE_APP_API_BASE + '/user', {
           method: 'POST',
